@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
+.object-fit--cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fade-in 0.6s linear forwards 1.2s;
+}
+@keyframes fade-in{
+    25%{
+        opacity: 0.3;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.8;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+/* hamburger */
+.hamburger{
+    position: fixed;
+    top: 63px;
+    left: 54px;
+    z-index: 9999;
+    padding: 16px 16px;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.hamburger-box{
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
+    width: 40px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 0px;
+    position: absolute;
+}
+.hamburger-inner{
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+    transition: 0.1s linear;
+}
+.hamburger-inner::before, .hamburger-inner::after{
+    content: "";
+    display: block;
+    transition: 0.1s linear;
+}
+.hamburger-inner::before {
+    top: -10px;
+}
+.hamburger-inner::after {
+    bottom: -10px;
+}   
+.hamburger:hover:not(.is-active) .hamburger-inner::before{
+    transform: translateY(3px);
+}
+.hamburger:hover:not(.is-active) .hamburger-inner::after{
+    transform: translateY(-3px);
+}
+.hamburger.is-active .hamburger-inner{
+    background: transparent;
+}
+.hamburger.is-active .hamburger-inner::before{
+    transform: rotate(45deg) translate(4px,6px);
+}
+.hamburger.is-active .hamburger-inner::after{
+    transform: rotate(-45deg) translate(9px,-9px);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* menu ball  */
+.full-screen-menu__ball{
+    height: calc(100vh + 40px);
+    width: 100vh;
+    position: fixed;
+    top: -20px;
+    left: 100vw;
+    z-index: 999;
+    transition: 0.65s cubic-bezier(1, 0, 0.84, 0.43);
+    /* transition: all 0.5s cubic-bezier(0.15, 0.49, 0.33, 0.67); */
+}
+.full-screen-menu__ball:before{
+    position: absolute;
+    background: #ff8002;
+    content: "";
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    z-index: 1;
+}
+.full-screen-menu__ball:after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    left: 50%;
+    width: 50%;
+    background: #000;
+    z-index: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.full-screen-menu__ball.is-active{
+    left: -50vh;
+    transition: .65s cubic-bezier(0.16, 0.57, 0, 1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@media (max-width: 991px){
+.hamburger {
+    top: 15px;
+    left: 0px;
+    mix-blend-mode: unset !important;
 }
-
-.App-link {
-  color: #61dafb;
+.full-screen-menu__ball.is-active{
+    left: -84vh;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
