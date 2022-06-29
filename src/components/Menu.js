@@ -43,7 +43,7 @@ const Menu = () => {
                         icons.map((icon,index)=>{
                             const img  = require(`../Images/social/${icon}.svg`);
                             return(
-                                <a href="/"><img src={img} alt="" /></a>
+                                <a href="/" key={index}><img src={img} alt="" /></a>
                             )
                         })
                     }
